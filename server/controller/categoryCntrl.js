@@ -41,16 +41,3 @@ export const deleteCategory = asyncHandler(async(req, res) =>{
     }
 });
 
-export const updateCategory = asyncHandler(async(req, res) => {
-    const {id} = req.params;
-    const name = req.body;
-    try {
-        const updateCat = await prisma.category.update({
-            where: {id: +id},
-            data: {...req.body}
-        });
-        res.send({message: "A Category Has Been Updated", updateCat: updateCat});
-    } catch (err) {
-        throw new Error(err.message);
-    }
-});
